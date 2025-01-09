@@ -270,7 +270,7 @@
 
                                 var coordinates = new firebase.firestore.GeoPoint(latitude, longitude);
 
-                                geoFirestore.collection('vendors').doc(user.vendorID).update({
+                                await geoFirestore.collection('vendors').doc(user.vendorID).update({
                                     'description': description,
                                     'latitude': latitude,
                                     'longitude': longitude,

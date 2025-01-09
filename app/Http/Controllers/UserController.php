@@ -117,7 +117,7 @@ class UserController extends Controller
     {
         $users = User::join('roles', 'roles.id', '=', 'users.role_id')
             ->select('users.*', 'roles.role_name as roleName')->where('users.id', '!=', 1)->get();
-        
+
         return view('admin_users.index', compact(['users']));
     }
 
@@ -233,5 +233,5 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    
+
 }
