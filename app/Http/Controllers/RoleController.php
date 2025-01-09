@@ -107,9 +107,6 @@ class RoleController extends Controller
 
         $roleId = $id;
 
-        dd($roleId);
-        exit;
-
         $permissions = array_keys(permissions_array());
 
         //  Combine permissions and routes arrays to a separate associative array
