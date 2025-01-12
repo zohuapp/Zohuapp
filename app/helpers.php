@@ -1,6 +1,6 @@
 <?php
 
-// Permissions
+// Permissions to access the routes
 function permissions_array(): array
 {
     $permissions = array(

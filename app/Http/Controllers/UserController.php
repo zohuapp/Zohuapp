@@ -56,7 +56,6 @@ class UserController extends Controller
                     'email' => 'required|email'
                 ]);
             }
-
         } else {
             $user = Auth::user();
             if (password_verify($old_password, $user->password)) {
@@ -75,16 +74,14 @@ class UserController extends Controller
                         'email' => 'required|email'
                     ]);
                 }
-
             } else {
-                return Redirect()->back()->with(['message' => "Please enter correct old password"]);
+                return back()->with(['message' => "Please enter correct old password"]);
             }
-
         }
 
         if ($validator->fails()) {
             $error = $validator->errors()->first();
-            return Redirect()->back()->with(['message' => $error])->withInput();;
+            return back()->with(['message' => $error])->withInput();
         }
 
         $user = User::find($id);
@@ -100,7 +97,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return redirect()->back();
+        return back();
     }
 
     public function create()
@@ -125,7 +122,6 @@ class UserController extends Controller
     {
         $roles = Role::all();
         return view('admin_users.create', compact(['roles']));
-
     }
 
     public function storeAdminUsers(Request $request)
@@ -144,7 +140,7 @@ class UserController extends Controller
         ]);
         if ($validator->fails()) {
             $error = $validator->errors()->first();
-            return Redirect()->back()->with(['message' => $error])->withInput();;
+            return back()->with(['message' => $error])->withInput();
         }
 
         User::create([
@@ -155,7 +151,6 @@ class UserController extends Controller
         ]);
 
         return redirect('admin-users');
-
     }
 
     public function editAdminUsers($id)
@@ -163,7 +158,6 @@ class UserController extends Controller
         $user = User::join('roles', 'roles.id', '=', 'users.role_id')->select('users.*', 'roles.role_name as roleName')->find($id);
         $roles = Role::all();
         return view('admin_users.edit', compact(['user', 'roles']));
-
     }
 
     public function updateAdminUsers(Request $request, $id)
@@ -187,16 +181,14 @@ class UserController extends Controller
                     'confirm_password' => 'required|same:password',
                     'email' => 'required|email'
                 ]);
-
             } else {
-                return Redirect()->back()->with(['message' => "Please enter correct old password"]);
+                return back()->with(['message' => "Please enter correct old password"]);
             }
-
         }
 
         if ($validator->fails()) {
             $error = $validator->errors()->first();
-            return Redirect()->back()->with(['message' => $error]);
+            return back()->with(['message' => $error]);
         }
 
         $user = User::find($id);
@@ -225,13 +217,11 @@ class UserController extends Controller
                 $users = User::find($id[$i]);
                 $users->delete();
             }
-
         } else {
             $user = User::find($id);
             $user->delete();
         }
 
-        return redirect()->back();
+        return back();
     }
-
 }
