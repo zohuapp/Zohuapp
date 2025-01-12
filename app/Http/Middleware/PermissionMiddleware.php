@@ -32,14 +32,10 @@ class PermissionMiddleware
 
         $role_has_permissions = array_unique($role_has_permissions);
 
-        // dd($permission);
-        // exit;
-
         // validating if the $role_has_permissions array contains the required $permission = (for example 'orders)
         if (in_array($permission,$role_has_permissions)) {
             $permission_has_routes = Permission::where('role_id', $user->role_id)->where('permission',$permission)->pluck('routes')->toArray();
-            // dd($permission_has_routes);
-            // exit;
+
             if($routes==null){
                 return $next($request);
 

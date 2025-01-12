@@ -26,9 +26,6 @@ class CheckUserRoleMiddleware
 
             $role_has_permissions = array_unique($role_has_permissions);
 
-            // dd($role_has_permissions);
-            // exit;
-
             $users = User::join('roles', 'roles.id', '=', 'users.role_id')->where('users.id', '=', $user->id)->select('roles.role_name as roleName')->first();
 
             session(['user_role' => $users->roleName, 'user_permissions' => json_encode($role_has_permissions)]);

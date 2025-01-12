@@ -43,7 +43,6 @@
                                 cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        {{-- {{ dd(session('user_permissions')); }} --}}
                                         @if (in_array('users.delete', json_decode(@session('user_permissions'), true)))
 
                                             <th class="delete-all"><input type="checkbox" id="is_active"><label
