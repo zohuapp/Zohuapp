@@ -45,7 +45,7 @@
                         <div class="form-group row width-50">
                             <label class="col-3 control-label">{{ trans('lang.upload_app_logo') }}*</label>
                             <input type="file" class="col-7" onChange="handleFileSelect(event)"
-                                accept="image/png,image/jpg,image/jpeg">
+                                accept="image/png,image/jpg,image/jpeg,image/webp">
                             <div id="uploding_image"></div>
                             <div class="logo_img_thumb"></div>
                         </div>
@@ -53,7 +53,7 @@
                         <div class="form-group row width-50">
                             <label class="col-5 control-label">{{ trans('lang.menu_placeholder_image') }}*</label>
                             <input type="file" class="col-7" onChange="handleFileSelectplaceholder(event)"
-                                accept="image/png,image/jpg,image/jpeg">
+                                accept="image/png,image/jpg,image/jpeg,image/webp">
                             <div id="uploading_placeholder"></div>
                             <div class="placeholder_img_thumb"></div>
                         </div>
@@ -61,7 +61,7 @@
                         <div class="form-group row width-50">
                             <label class="col-3 control-label">{{ trans('lang.upload_favicon') }}*</label>
                             <input type="file" class="col-7" onChange="handleFileSelectFavicon(event)"
-                                accept="image/png,image/jpg,image/jpeg">
+                                accept="image/png,image/jpg,image/jpeg,image/webp">
                             <div id="uploding_favicon"></div>
                             <div class="favicon_img_thumb"></div>
                         </div>
@@ -389,7 +389,7 @@
                 var placeholderImage = snapshots.data();
                 jQuery("#data-table_processing").hide();
                 placeholderphoto = placeholderImage.image;
-                $(".placeholder_img_thumb").append('<img class="rounded" style="width:50px" src="' +
+                $(".placeholder_img_thumb").append('<img class="rounded" src="' +
                     placeholderphoto + '" alt="image">');
             })
             refNotificationSetting.get().then(async function(snapshots) {
