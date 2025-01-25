@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@php
+{{-- @php
     $countries = file_get_contents(asset('countriesdata.json'));
     $countries = json_decode($countries);
     $countries = (array) $countries;
@@ -9,7 +9,7 @@
         $newcountries[$valuecountry->phoneCode] = $valuecountry;
         $newcountriesjs[$valuecountry->phoneCode] = $valuecountry->code;
     }
-@endphp
+@endphp --}}
 @section('content')
     <div class="page-wrapper">
         <div class="row page-titles">
@@ -200,11 +200,11 @@
                                 <label class="col-3 control-label">{{ trans('lang.country') }}*</label>
                                 <div class="col-7">
                                     <select class="form-control country" name="country" id="country">
-                                        @foreach ($newcountries as $keycy => $valuecy)
+                                        {{-- @foreach ($newcountries as $keycy => $valuecy)
                                             <option value="{{ $valuecy->countryName }}">
                                                 {{ $valuecy->countryName }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -414,14 +414,12 @@
                     var yyyy = date.getFullYear();
                     var expiresDate = yyyy + '-' + mm + '-' + dd;
                 } catch (err) {
-
                     var date1 = '';
                     var date = '';
                     var dd = '';
                     var mm = '';
                     var yyyy = '';
                     var expiresDate = '';
-
                 }
 
                 $(".expiry_date").val(expiresDate);
@@ -799,7 +797,7 @@
                             'shelf_life': shelf_life,
                             'country': country,
                             'license_fssai': fssai_license,
-                            'expiry_date': new Date(expiry_date),
+                            'expiry_date': (expiry_date !== "") ? new Date(expiry_date) : null, //if expiry date is empty then add null value
                             'packaging_type': packaging_type,
                             'seller': seller,
                             'seller_fssai': seller_fssai,
