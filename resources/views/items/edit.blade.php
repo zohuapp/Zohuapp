@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- @php
+@php
     $countries = file_get_contents(asset('countriesdata.json'));
     $countries = json_decode($countries);
     $countries = (array) $countries;
@@ -9,7 +9,7 @@
         $newcountries[$valuecountry->phoneCode] = $valuecountry;
         $newcountriesjs[$valuecountry->phoneCode] = $valuecountry->code;
     }
-@endphp --}}
+@endphp
 @section('content')
     <div class="page-wrapper">
         <div class="row page-titles">
@@ -200,11 +200,11 @@
                                 <label class="col-3 control-label">{{ trans('lang.country') }}*</label>
                                 <div class="col-7">
                                     <select class="form-control country" name="country" id="country">
-                                        {{-- @foreach ($newcountries as $keycy => $valuecy)
+                                        @foreach ($newcountries as $keycy => $valuecy)
                                             <option value="{{ $valuecy->countryName }}">
                                                 {{ $valuecy->countryName }}
                                             </option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
