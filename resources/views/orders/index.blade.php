@@ -28,8 +28,7 @@
                         <div class="card-body">
 
                             <div class="table-responsive m-t-10">
-                                <table id="orderTable"
-                                    class="display nowrap table table-hover table-striped table-bordered table table-striped"
+                                <table id="orderTable" class="display nowrap table table-hover table-striped table-bordered"
                                     cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
@@ -96,20 +95,20 @@
 
         var ref = '';
 
-        var user_permissions = '<?php echo @session('user_permissions'); ?>';
+        // Get user permissions from PHP session (assuming it's a JSON string)
+        const user_permissions = <?php echo json_encode(@session('user_permissions')); ?>;
 
-        user_permissions = JSON.parse(user_permissions);
+        // Check if the user has the "orders.delete" permission
+        const hasDeletePermission = user_permissions.includes('orders.delete');
+        const checkPrintPermission = user_permissions.includes('vendors.orderprint');
 
         var checkDeletePermission = false;
 
-        if ($.inArray('orders.delete', user_permissions) >= 0) {
+        if (hasDeletePermission && checkPrintPermission >= 0) {
             checkDeletePermission = true;
         }
-        var checkPrintPermission = false;
 
-        if ($.inArray('vendors.orderprint', user_permissions) >= 0) {
-            checkPrintPermission = true;
-        }
+        // console.log(checkDeletePermission);
 
         $(document.body).on('change', '#order_status', function() {
             order_status = jQuery(this).val();
@@ -136,6 +135,8 @@
         } else {
             echo '';
         } ?>';
+
+        // alert(userID);
 
 
         if (userID) {
@@ -258,7 +259,7 @@
                                 var createdAt = date + ' ' + time;
                                 if (
                                     (user && user.toLowerCase().includes(
-                                    searchValue)) ||
+                                        searchValue)) ||
                                     (driver && driver.toLowerCase().includes(
                                         searchValue)) ||
                                     (childData.id && childData.id.toLowerCase()
@@ -283,9 +284,9 @@
                             if (orderByField === 'createdAt') {
                                 try {
                                     aValue = a[orderByField] ? new Date(a[orderByField]
-                                    .toDate()).getTime() : 0;
+                                        .toDate()).getTime() : 0;
                                     bValue = b[orderByField] ? new Date(b[orderByField]
-                                    .toDate()).getTime() : 0;
+                                        .toDate()).getTime() : 0;
                                 } catch (err) {}
                             }
                             if (orderByField === 'amount') {
@@ -339,7 +340,8 @@
                 ]),
                 columnDefs: [{
                         targets: (getId != '' || driverID || userID) ? (checkDeletePermission ? [3] : [
-                            2]) : (checkDeletePermission ? [4] : [3]),
+                            2
+                        ]) : (checkDeletePermission ? [4] : [3]),
                         type: 'date',
                         render: function(data) {
                             return data; // Adjust formatting if needed
@@ -348,7 +350,8 @@
                     {
                         orderable: false,
                         targets: (getId != '' || driverID || userID) ? (checkDeletePermission ? [0, 5,
-                            6] : [4, 5]) : (checkDeletePermission ? [0, 6, 7] : [5, 6])
+                            6
+                        ] : [4, 5]) : (checkDeletePermission ? [0, 6, 7] : [5, 6])
                     }
                 ],
                 "language": {
@@ -385,6 +388,9 @@
             var id = val.id;
             var vendorID = val.vendorID;
 
+            // console.log(val);
+            // console.log(checkDeletePermission);
+
             var user_id = val.userID;
             var route1 = '{{ route('orders.edit', ':id') }}';
             route1 = route1.replace(':id', id);
@@ -395,6 +401,7 @@
             var customer_view = '{{ route('users.edit', ':id') }}';
             customer_view = customer_view.replace(':id', user_id);
             if (checkDeletePermission) {
+                // console.log(checkDeletePermission);
                 html.push('<td class="delete-all"><input type="checkbox" id="is_open_' + id +
                     '" class="is_open" dataId="' + id + '"><label class="col-3 control-label"\n' +
                     'for="is_open_' + id + '" ></label></td>');
@@ -535,6 +542,8 @@
                     jQuery("#data-table_processing").show();
                     $('#orderTable .is_open:checked').each(function() {
                         var dataId = $(this).attr('dataId');
+
+                        // console.log(dataId);
 
                         database.collection('orders').doc(dataId).delete().then(function() {
 
@@ -704,23 +713,23 @@
             if (getId !== '' || driverID || userID) {
                 // Conditions based on driverID or userID presence
                 if (driverID) {
-                    return checkDeletePermission ?
-                        ['', 'id', 'driver', 'user', 'createdAt', 'price', 'status', ''] :
-                        ['id', 'driver', 'user', 'createdAt', 'price', 'status', ''];
+                    return checkDeletePermission ? ['', 'id', 'driver', 'user', 'createdAt', 'price', 'status', ''] : ['id',
+                        'driver', 'user', 'createdAt', 'price', 'status', ''
+                    ];
                 } else if (userID) {
-                    return checkDeletePermission ?
-                        ['', 'id', 'user', 'driver', 'createdAt', 'price', 'status', ''] :
-                        ['id', 'user', 'driver', 'createdAt', 'price', 'status', ''];
+                    return checkDeletePermission ? ['', 'id', 'user', 'driver', 'createdAt', 'price', 'status', ''] : ['id',
+                        'user', 'driver', 'createdAt', 'price', 'status', ''
+                    ];
                 } else {
-                    return checkDeletePermission ?
-                        ['', 'id', 'user', 'driver', 'createdAt', 'price', 'status', ''] :
-                        ['id', 'user', 'driver', 'createdAt', 'price', 'status', ''];
+                    return checkDeletePermission ? ['', 'id', 'user', 'driver', 'createdAt', 'price', 'status', ''] : ['id',
+                        'user', 'driver', 'createdAt', 'price', 'status', ''
+                    ];
                 }
             } else {
                 // When neither driverID nor userID is present
-                return checkDeletePermission ?
-                    ['', 'id', 'driver', 'user', 'createdAt', 'amount', 'status', ''] :
-                    ['id', 'driver', 'user', 'createdAt', 'amount', 'status', ''];
+                return checkDeletePermission ? ['', 'id', 'driver', 'user', 'createdAt', 'amount', 'status', ''] : ['id',
+                    'driver', 'user', 'createdAt', 'amount', 'status', ''
+                ];
             }
         }
     </script>
