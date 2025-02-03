@@ -151,7 +151,8 @@
                             <div class="form-group row width-100">
                                 <label class="col-3 control-label">{{ trans('lang.item_image') }}</label>
                                 <div class="col-7">
-                                    <input type="file" id="product_image" accept="image/png,image/jpg,image/jpeg"
+                                    <input type="file" id="product_image"
+                                        accept="image/png,image/jpg,image/jpeg,image/webp"
                                         onChange="handleFileSelect(event)">
                                     <div class="placeholder_img_thumb product_image"></div>
                                     <div id="uploding_image"></div>
@@ -189,7 +190,7 @@
                         <fieldset>
                             <legend>{{ trans('lang.general_information') }}</legend>
 
-                            <div class="form-group row width-50">
+                            <div class="form-group row width-50 d-none">
                                 <label class="col-3 control-label">{{ trans('lang.shelf_life') }}*</label>
                                 <div class="col-7">
                                     <input type="text" class="form-control shelf_life">
@@ -209,14 +210,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row width-50">
+                            <div class="form-group row width-50 d-none">
                                 <label class="col-3 control-label">{{ trans('lang.fssai_license') }}*</label>
                                 <div class="col-7">
                                     <input type="text" class="form-control fssai_license">
                                 </div>
                             </div>
 
-                            <div class="form-group row width-50">
+                            <div class="form-group row width-50 d-none">
                                 <label class="col-3 control-label">{{ trans('lang.expiry_date') }}*</label>
                                 <div class="col-7">
                                     <input type="date" class="form-control expiry_date">
@@ -224,7 +225,7 @@
                             </div>
 
 
-                            <div class="form-group row width-50">
+                            <div class="form-group row width-50 d-none">
                                 <label class="col-3 control-label">{{ trans('lang.packaging_type') }}*</label>
                                 <div class="col-7">
                                     <input type="text" class="form-control packaging_type">
@@ -238,7 +239,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row width-50">
+                            <div class="form-group row width-50 d-none">
                                 <label class="col-3 control-label">{{ trans('lang.seller_fssai') }}*</label>
                                 <div class="col-7">
                                     <input type="text" class="form-control seller_fssai">
@@ -797,7 +798,9 @@
                             'shelf_life': shelf_life,
                             'country': country,
                             'license_fssai': fssai_license,
-                            'expiry_date': (expiry_date !== "") ? new Date(expiry_date) : null, //if expiry date is empty then add null value
+                            'expiry_date': (expiry_date !== "") ? new Date(
+                                expiry_date) :
+                            null, //if expiry date is empty then add null value
                             'packaging_type': packaging_type,
                             'seller': seller,
                             'seller_fssai': seller_fssai,

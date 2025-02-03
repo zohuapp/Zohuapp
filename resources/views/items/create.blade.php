@@ -136,7 +136,7 @@ foreach ($countries as $keycountry => $valuecountry) {
 
                             </div>
                         </div>
-                
+
                         <div class="form-group row width-100" id="attributes_div">
                             <label class="col-3 control-label">{{trans('lang.item_attribute_id')}}</label>
                             <div class="col-7">
@@ -155,7 +155,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                         <div class="form-group row width-100">
                             <label class="col-3 control-label">{{trans('lang.item_image')}}</label>
                             <div class="col-7">
-                                <input type="file" id="product_image" accept="image/png,image/jpg,image/jpeg"
+                                <input type="file" id="product_image" accept="image/png,image/jpg,image/jpeg,image/webp"
                                     onChange="handleFileSelect(event)">
                                 <div class="placeholder_img_thumb product_image"></div>
                                 <div id="uploding_image"></div>
@@ -193,7 +193,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                     <fieldset>
                         <legend>{{trans('lang.general_information')}}</legend>
 
-                        <div class="form-group row width-50">
+                        <div class="form-group row width-50 d-none">
                             <label class="col-3 control-label">{{trans('lang.shelf_life')}}*</label>
                             <div class="col-7">
                                 <input type="text" class="form-control shelf_life">
@@ -213,14 +213,14 @@ foreach ($countries as $keycountry => $valuecountry) {
                             </div>
                         </div>
 
-                        <div class="form-group row width-50">
+                        <div class="form-group row width-50 d-none">
                             <label class="col-3 control-label">{{trans('lang.fssai_license')}}*</label>
                             <div class="col-7">
                                 <input type="text" class="form-control fssai_license">
                             </div>
                         </div>
 
-                        <div class="form-group row width-50">
+                        <div class="form-group row width-50 d-none">
                             <label class="col-3 control-label">{{trans('lang.expiry_date')}}*</label>
                             <div class="col-7">
                                 <input type="date" class="form-control expiry_date">
@@ -228,7 +228,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                         </div>
 
 
-                        <div class="form-group row width-50">
+                        <div class="form-group row width-50 d-none">
                             <label class="col-3 control-label">{{trans('lang.packaging_type')}}*</label>
                             <div class="col-7">
                                 <input type="text" class="form-control packaging_type">
@@ -242,7 +242,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                             </div>
                         </div>
 
-                        <div class="form-group row width-50">
+                        <div class="form-group row width-50 d-none">
                             <label class="col-3 control-label">{{trans('lang.seller_fssai')}}*</label>
                             <div class="col-7">
                                 <input type="text" class="form-control seller_fssai">
@@ -593,7 +593,7 @@ foreach ($countries as $keycountry => $valuecountry) {
                     'disclaimer': disclaimer,
                     'is_best_offer': is_best_offer,
                     'is_establish_brand': is_establish_brand,
-                    
+
                 };
 
                 database.collection('vendor_products').doc(id).set(objects).then(function (result) {
