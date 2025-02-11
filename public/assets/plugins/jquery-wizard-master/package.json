@@ -36,8 +36,8 @@
   ],
   "scripts": {
     "prestart": "npm install",
-    "start": "gulp serve",
-    "build": "npm run prestart && gulp build",
+    "start": "node init && gulp serve",
+    "build": "node init && npm run prestart && gulp build",
     "deploy": "gulp deploy",
     "deploy:prepare": "gulp deploy:prepare",
     "release": "gulp release",
