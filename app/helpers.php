@@ -12,6 +12,7 @@ function permissions_array(): array
         'items' => 'items',
         'items-edit' => 'items.edit',
         'items-create' => 'items.create',
+        'items-delete' => "items.delete",
         'coupons' => 'coupons',
         'coupons-create' => 'coupons.create',
         'coupons-edit' => 'coupons.edit',

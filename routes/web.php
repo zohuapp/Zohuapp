@@ -54,11 +54,14 @@ Route::middleware(['permission:support,support'])->group(function () {
     Route::get('support', [App\Http\Controllers\SupportController::class, 'index'])->name('support');
 });
 
+/**
+ * This is a duplicate route for the items create functionality because one route already exists
+ * for the items create functionality. The duplicate route is kept here for demonstration purposes.
+ */
+// Route::middleware(['permission:items,items.create'])->group(function () {
 
-Route::middleware(['permission:items,items.create'])->group(function () {
-
-    Route::get('/item/create/{id}', [App\Http\Controllers\ItemController::class, 'create']);
-});
+//     Route::get('/item/create/{id}', [App\Http\Controllers\ItemController::class, 'create']);
+// });
 
 Route::middleware(['permission:coupons,coupons.create'])->group(function () {
 

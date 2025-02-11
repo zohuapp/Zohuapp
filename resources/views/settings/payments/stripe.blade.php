@@ -278,7 +278,7 @@
                         'strip.stripeSecret': stripeSecret,
                         'strip.image': IMG
                     }).then(function(result) {
-                        console.log(result);
+                        // console.log(result);
                         window.location.href = '{{ url('settings/payments/stripe') }}';
                     });
                 }).catch(err => {

@@ -288,23 +288,13 @@
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 
-        // $(document).ready(function() {
-        //     $('#login_btn').click(function(e) {
-        //         // e.preventDefault();
-        //         alert('Login')
-        //         var email = $("#email").val();
-        //         var password = $("#password").val();
-        //         console.log(email, password);
-        //     });
-        // });
-
         /* login user */
         $('#login_btn').click(function() {
 
             var email = $("#email").val();
             var password = $("#password").val();
 
-            console.log(email, password);
+            // console.log(email, password);
 
             database.collection('users').where("role", "==", "vendor").get().then(async function(snapshots) {
 

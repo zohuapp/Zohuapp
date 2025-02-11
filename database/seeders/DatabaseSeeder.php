@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         //     'coupons' => 'coupons',
         //     'global-setting' => 'settings.app.globals',
         // ];
-        $permissions = array (
+        $permissions = array(
             'terms' => 'termsAndConditions',
             'privacy' => 'privacyPolicy',
             'refund' => 'refundPolicy',
@@ -47,6 +47,7 @@ class DatabaseSeeder extends Seeder
             'items' => 'items',
             'items-edit' => 'items.edit',
             'items-create' => 'items.create',
+            'items-delete' => "items.delete",
             'coupons' => 'coupons',
             'coupons-create' => 'coupons.create',
             'coupons-edit' => 'coupons.edit',
